@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addUser } from '../redux/actions';
 
@@ -83,10 +83,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Login.propTypes = {
-  history: Proptypes.shape({
-    push: Proptypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
   }).isRequired,
-  addUserDispatch: Proptypes.func.isRequired,
+  addUserDispatch: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Login);

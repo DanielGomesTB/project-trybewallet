@@ -21,6 +21,7 @@ class Login extends React.Component {
     const { email, password } = this.state;
     const minValue = 6;
     const emailValidation = /\S+@\S+\.\S+/;
+    // regex retirado de: https://www.horadecodar.com.br/2020/09/13/como-validar-email-com-javascript/
     if (emailValidation.test(email) && password.length >= minValue) {
       this.setState({
         isSaveButtonDisabled: false,

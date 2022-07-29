@@ -4,6 +4,8 @@ import { ADD_USER } from '../actions';
 
 const INITIAL_STATE = {
   email: '',
+  // account: 0,
+  // coin: 'BRL',
   //   login: false,
 };
 
@@ -13,6 +15,8 @@ function user(state = INITIAL_STATE, action) {
     return {
       ...state,
       email: action.payload,
+      // account: action.payload,
+      // coin: action.payload,
       //   login: !state.login,
     };
   default:

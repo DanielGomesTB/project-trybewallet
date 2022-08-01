@@ -2,9 +2,15 @@
 export const ADD_USER = 'ADD_USER';
 export const GET_CURRENCY = 'GET_CURRENCY';
 export const GET_EXCHANGE = 'GET_EXCHANGE';
+export const REMOVE_EXPENSE = 'REMOVE_EXPENSE';
 
 export const addUser = (payload) => ({
   type: ADD_USER,
+  payload,
+});
+
+export const removeExpense = (payload) => ({
+  type: REMOVE_EXPENSE,
   payload,
 });
 
@@ -18,6 +24,7 @@ const fetchApi = async () => {
   const data = await response.json();
   return data;
 };
+
 export const fetchAPICurrencies = () => async (dispatch) => {
   const data = await fetchApi();
   delete data.USDT;

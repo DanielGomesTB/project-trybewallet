@@ -71,8 +71,8 @@ class WalletForm extends React.Component {
             onChange={ this.handleChange }
             value={ currency }
           >
-            {currencies.map((coin, index) => (
-              <option key={ index } value={ coin }>{coin}</option>
+            {currencies.map((coin) => (
+              <option key={ coin } value={ coin }>{coin}</option>
             ))}
           </select>
           <select

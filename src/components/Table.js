@@ -1,8 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Proptypes from 'prop-types';
+import { removeExpense } from '../redux/actions';
 
 class Table extends React.Component {
+  handleClick = (event) => {
+    const { name } = event.target;
+    const { removeUserDispach, expenses } = this.props;
+    removeUserDispach(name);
+    console.log(expenses);
+  }
+
   render() {
     const { expenses } = this.props;
     return (
@@ -21,8 +29,8 @@ class Table extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {expenses.map((expense) => (
-            <tr key={ expense.id }>
+          {expenses.map((expense, index) => (
+            <tr key={ index }>
               <td>{expense.description}</td>
               <td>{expense.tag}</td>
               <td>{expense.method}</td>
@@ -36,6 +44,19 @@ class Table extends React.Component {
                 ).toFixed(2)}
               </td>
               <td>Real</td>
+              <td>
+                {/* <button type="button">Editar</button> */}
+                <button
+                  key={ expense.id }
+                  type="button"
+                  data-testid="delete-btn"
+                  onClick={ this.handleClick }
+                  name={ expense.id }
+                >
+                  Excluir
+
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -52,4 +73,8 @@ const mapStateToProps = (state) => ({
   expenses: state.wallet.expenses,
 });
 
-export default connect(mapStateToProps)(Table);
+const mapDispatchToProps = (dispatch) => ({
+  removeUserDispach: (name) => dispatch(removeExpense(name)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Table);

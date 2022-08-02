@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchAPICurrencies, fetchAPIExchange } from '../redux/actions';
+import { fetchAPICurrencies, fetchAPIExchange, changeEditor } from '../redux/actions';
 
 class WalletForm extends React.Component {
   constructor() {
@@ -34,13 +34,14 @@ class WalletForm extends React.Component {
   }
 
   handleClick = () => {
-    const { fetchExchange } = this.props;
+    const { fetchExchange, editorChange } = this.props;
     fetchExchange(this.state);
     this.clearInput();
+    editorChange();
   }
 
   render() {
-    const { currencies } = this.props;
+    const { currencies, editor } = this.props;
     const { value, description, currency, method, tag } = this.state;
     return (
       <div>
@@ -101,7 +102,7 @@ class WalletForm extends React.Component {
             type="button"
             onClick={ this.handleClick }
           >
-            Adicionar despesa
+            { editor ? 'Editar despesa' : 'Adicionar despesa'}
           </button>
         </form>
       </div>
@@ -117,11 +118,13 @@ WalletForm.propTypes = {
 
 const mapStateToProps = (state) => ({
   currencies: state.wallet.currencies,
+  editor: state.wallet.editor,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchCurrencies: () => dispatch(fetchAPICurrencies()),
   fetchExchange: (state) => dispatch(fetchAPIExchange(state)),
+  editorChange: () => dispatch(changeEditor()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(WalletForm);

@@ -3,6 +3,8 @@ export const ADD_USER = 'ADD_USER';
 export const GET_CURRENCY = 'GET_CURRENCY';
 export const GET_EXCHANGE = 'GET_EXCHANGE';
 export const REMOVE_EXPENSE = 'REMOVE_EXPENSE';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
+export const CHANGE_EDITOR = 'CHANGE_EDITOR';
 
 export const addUser = (payload) => ({
   type: ADD_USER,
@@ -11,6 +13,16 @@ export const addUser = (payload) => ({
 
 export const removeExpense = (payload) => ({
   type: REMOVE_EXPENSE,
+  payload,
+});
+
+export const editExpense = (payload) => ({
+  type: EDIT_EXPENSE,
+  payload,
+});
+
+export const changeEditor = (payload) => ({
+  type: CHANGE_EDITOR,
   payload,
 });
 
